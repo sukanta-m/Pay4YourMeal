@@ -15,7 +15,7 @@ class SharedBlogsController < ApplicationController
       end
 
       #send email notification to shared users
-      SendNotificationEmailToSharedUsersWorker.new( shared_friends,current_user.id)
+      SendNotificationEmailToSharedUsersWorker.new( shared_friends,current_user.id).perform
       flash[:success] = "Notification email sent to shared users"
     else
       flash[:success] = "This blog didn't shared with anyone"

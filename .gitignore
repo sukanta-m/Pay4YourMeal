@@ -11,7 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
-
+.idea/
 /public/ckeditor_assets/
 /server.crt
 /server.csr
