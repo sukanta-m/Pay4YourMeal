@@ -21,6 +21,7 @@ Rails.application.configure do
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
+  config.action_mailer.asset_host                 = "http://localhost:3000"
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Debug mode disables concatenation and preprocessing of assets.
@@ -45,8 +46,10 @@ Rails.application.configure do
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => 'localhost:3000',
-      :user_name            => ENV['EMAIL_ADDRESS'],
-      :password             => ENV['PASSWORD'],
+      :user_name            => 'test.sukanta.mangal@gmail.com',
+      :password             => 'mindfire',
+      # :user_name            => ENV['EMAIL_ADDRESS'],
+      # :password             => ENV['PASSWORD'],
       :authentication       => 'plain',
       :enable_starttls_auto => true
   }

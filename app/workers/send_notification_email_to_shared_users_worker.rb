@@ -10,7 +10,7 @@ class SendNotificationEmailToSharedUsersWorker
     users = User.where(:id => self.user_ids)
     sender = User.find_by_id(self.sender_id)
     users.each do |user|
-      SharedBlogMailer.notify_user(user, sender).deliver
+      SharedBlogMailer.notify_user(user, sender).deliver_now
     end if sender.present?
   end
 end
