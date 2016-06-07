@@ -1,0 +1,13 @@
+<% if @flag %>
+    $("#blog_<%=@blog_id%>").remove()
+
+    $('#status_message').html("<div class= 'alert alert-success fade in'>" +
+            "<button class='close' data-dismiss='alert'> x</button> Successfully deleted</div>"
+            )
+<% else %>
+$('#status_message').html("<div class= 'alert alert-warning fade in'>" +
+                "<button class='close' data-dismiss='alert'> x</button> Failed to delete</div>"
+)
+<% end %>
+$("html, body").animate({ scrollTop: 0 }, "slow");
+App.unBlockUI($('#main'))

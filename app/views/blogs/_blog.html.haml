@@ -1,0 +1,65 @@
+%article.post.type-post.status-publish.format-standard.hentry.category-asp-net-mvc{id:"blog_#{blog.id}"}
+  %header.post-title
+    %h1
+      %a{:href => blog_path(blog)}
+        = blog.title
+    %a.post-permalink{:href => blog_path(blog)}
+      %p.post-date
+        %strong
+          = blog.created_at.day
+        %em
+          = blog.created_at.strftime("%A")
+        %span
+          = blog.created_at.strftime("%b %Y")
+    .post-info.clear-fix
+      %p{style:"width:20%;text-align:center;"}
+        = link_to "#" do
+          = image_tag get_user_image_path(blog.user) , class: "user-image"
+      %p{style:"width:80%;"}
+        Posted
+        %span.by-author
+          by
+          %span.author
+            %a.url.fn.n{:href => "#", :rel => "author", :title => "View all posts by #{blog.user.full_name}"}
+              = blog.user.full_name
+  .post-content.clear-fix{class: "#{params[:action] == 'show' ? '' : 'collapse-blog'}"}
+    .post-extras
+      - if current_user && blog.user.id == current_user.id
+        %p
+          %a.post-edit-link{:href => edit_blog_path(blog), title: "Edit blog"}
+            %i.fa.fa-lg.fa-fw.fa-edit
+        %p
+          %a.post-edit-link#link_share_blog{:href => "javascript:void(0)", title: "Share blog with friend",
+                                            data: {href: shared_friends_blog_path(blog)} }
+            %i.fa.fa-lg.fa-fw.fa-share
+        %p
+          %a#make_private_public.post-edit-link{:href => "javascript:void(0)",
+                                                data:{href: mark_private_public_blog_path(blog)},
+                                                title: "Click to mark it as #{get_blog_status_title(blog)}"}
+            - if blog.is_private
+              %i.fa.fa-lg.fa-fw.fa-lock{id: "lock_unlock_#{blog.id}"}
+            - else
+              %i.fa.fa-lg.fa-fw.fa-unlock{id: "lock_unlock_#{blog.id}"}
+        %p
+          - if params[:action] != 'show'
+            %a#delete_blog.post-edit-link{:href => "javascript:void(0)", data:{href: blog_path(blog)}, title: "Delete the blog"}
+              %i.fa.fa-lg.fa-fw.fa-trash
+          - else
+            %a#delete_blog_from_show.post-edit-link{:href => blog_path(blog),
+                                data:{method: :delete,
+                                      confirm: "Are you sure to delete the blog. Remember this can't be revert back "},
+                                title: "Delete the blog"}
+              %i.fa.fa-lg.fa-fw.fa-trash
+    .post-entry
+      = blog.description.html_safe
+  - if params[:action] != 'show'
+    #expand_collapse_blog
+      %span
+        Read more
+
+  - if params[:action].eql?("show") || params[:action].eql?("shared_blogs")
+    .post-shared-friends
+      %ul
+        - blog.linked_users.each do |user|
+          %li
+            = image_tag get_user_image_path(user), class: "user-image", title: "#{user.full_name.presence || user.email}"

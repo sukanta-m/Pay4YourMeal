@@ -1,0 +1,71 @@
+%header#header
+  #logo-group
+    %span#logo
+      = image_tag 'blog_header.gif', style: "width:100%;height:100%;"
+  .pull-left
+    .btn-header
+      %span
+        = link_to new_blog_path do
+          %i.fa.fa-plus-circle
+  .pull-left
+    .btn-header
+      %span
+        = link_to unread_blogs_blogs_path,class:'unread-blogs-notifiction' do
+          %i.fa.fa-envelope-o
+          %b#incomingFeedBadge.badge
+            = current_user.shared_blogs.unread.count
+  .pull-right
+    #logout.btn-header.transparent.pull-right
+      %span
+        %a{href: destroy_user_session_path, data:{method: :delete}, title: "Sign Out"}
+          %i.fa.fa-sign-out
+    .btn-header.pull-right
+      %span
+        = link_to registration_path(:user), data: { confirm: "Are you sure?" }, method: :delete do
+          %i.fa.fa-remove
+          Unhappy?
+= hidden_field_tag 'user_id',current_user.id.to_s
+%aside#left-panel
+  .login-info
+    %span
+      - if current_user.avatar.present?
+        = image_tag current_user.avatar.url(:thumb), class: "user-image", style:"width:25px; margin-right:10px;"
+      - else
+        %i.fa.fa-lg.fa-fw.fa-user
+      = current_user.full_name.presence || current_user.email
+  %nav
+    %ul
+      %li#menu_expand
+        %a{href: "#", class: 'active-navigation-link'}>
+          %i.fa.fa-lg.fa-fw.fa-table
+          %span.menu-item-parent Blogs
+          %b.collapse-sign
+            %em.fa.fa-expand-o
+        %ul.expand_compress{style:"display:none;"}
+          %li
+            = link_to "All", blogs_path
+          %li
+            = link_to "Public", blogs_path(:type => "public")
+          %li
+            = link_to "Private", blogs_path(:type => "private")
+          %li
+            = link_to "Shared by me", shared_blogs_blogs_path(:type => 'shared')
+          %li
+            = link_to "Shared with me", received_blogs_blogs_path
+      %li
+        %a{href: new_blog_path}
+          %i.fa.fa-lg.fa-fw.fa-plus
+          %span.menu-item-parent
+            New Blog
+      %li
+        %a{href: blogs_path(:type => "latest")}
+          %i.fa.fa-lg.fa-fw.fa-list
+          %span.menu-item-parent
+            Recent Blogs
+      %li
+        %a{href: edit_user_registration_path}
+          %i.fa.fa-lg.fa-fw.fa-user
+          %span.menu-item-parent
+            Account
+#user_shared_modal.modal.fade{:role => "dialog"}
+= stylesheet_link_tag    'main'

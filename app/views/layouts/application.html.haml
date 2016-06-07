@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title BlogsApp
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_link_tag params[:controller] if stylesheet_exists?(params[:controller])
+    = csrf_meta_tags
+  %body#login.animated.fadeInDown.desktop-detected
+    - if user_signed_in?
+      = render :partial => "layouts/after_authenticated_menu"
+    - else
+      = render :partial => "layouts/authentication_header"
+    #main{role: 'main',style:"min-height: 512px;"}
+      #page-content-wrapper.main
+        .container-fluid
+          .row{style: "margin:0;"}
+            #status_message
+              = render partial: "layouts/shared/flash_messages", flash: flash
+            = yield
+    = render :partial => '/shared/footer'
+    %script{src: "//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"}
+    %script{src: "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"}
+    = javascript_include_tag    'application'
+    = javascript_include_tag "/assets/jquery.blockUI.js"
+    = #javascript_include_tag "/assets/app.js"
+    = javascript_include_tag params[:controller] if javascript_exists?(params[:controller])
+    %script{src: "/assets/jquery.validate.min.js"}

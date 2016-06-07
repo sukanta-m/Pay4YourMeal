@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2617173795">
+    <data-source source="LOCAL" name="Rails blogs_app: development" uuid="8823cb87-131c-4ffa-a64f-10e51ed5ff3d">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/blogs_app_development</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfc7dfc3dfc4dfcedfccdfc3dfd8dfcf</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails blogs_app: test" uuid="a7065f9e-ccd2-4be9-a47f-0ec1006c5085">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/blogs_app_test</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfc7dfc3dfc4dfcedfccdfc3dfd8dfcf</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails blogs_app: production" uuid="e7dd4aed-0dd7-4eea-8a79-7800ccfa2847">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/blogs_app_production</jdbc-url>
+      <user-name>blogs_app</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfe8dfe6dfe5dfeddff9dff5dfebdffadffadff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

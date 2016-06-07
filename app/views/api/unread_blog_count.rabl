@@ -1,0 +1,2 @@
+object @counter_obj
+attributes :unread_blogs_count

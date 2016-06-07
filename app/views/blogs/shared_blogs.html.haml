@@ -1,0 +1,11 @@
+.padding-10
+  .row
+    .col-md-12
+      %h2
+        %i.fa.fa-list{:style=>"padding-right: 6px;"}
+          = get_blogs_view_header params[:type]
+- if @shared_blogs.present?
+  = render partial: @shared_blogs
+- else
+  .alert.alert-info.fade.in
+    Share your first blog with your friends

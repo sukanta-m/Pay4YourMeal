@@ -1,0 +1,387 @@
+aside
+  display: block
+  float: left
+  overflow: hidden
+  background: #3a3633
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI5NyUiIHN0b3AtY29sb3I9IiMzYTM2MzMiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMmEyNzI1IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==")
+  background: -moz-linear-gradient(left, #3a3633 93%, #2a2725 100%)
+  background: -webkit-gradient(linear, left top, right top, color-stop(93%, #3a3633), color-stop(100%, #2a2725))
+  background: -webkit-linear-gradient(left, #3a3633 93%, #2a2725 100%)
+  background: -o-linear-gradient(left, #3a3633 93%, #2a2725 100%)
+  background: -ms-linear-gradient(left, #3a3633 93%, #2a2725 100%)
+  background: linear-gradient(to right, #3a3633 93%, #2a2725 100%)
+  min-height: 100%
+
+#header > :first-child, aside
+  width: 220px
+
+  //login
+#main
+  display: block
+  margin-left: 220px!important
+  padding: 0
+  background-color: transparent!important
+
+#main
+  -webkit-transition: margin 200ms ease-out
+  -moz-transition: margin 200ms ease-out
+  -o-transition: margin 200ms ease-out
+  transition: margin 200ms ease-out
+  padding: 15px 15px
+
+#left-panel
+  position: absolute
+  top: 49px
+  left: 0px
+  z-index: 1002
+
+.login-info
+  border-bottom: 1px solid #D8D4D4
+  display: block
+  font-size: 12px
+  height: 39px
+  line-height: 39px
+  color: #ffffff
+  border: solid transparent
+  border-width: 1px 0px 1px 0px
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07)
+  width: 100%
+  margin: 0px !important
+  border-bottom: 1px solid #525151
+  strong, a
+    text-transform: capitalize
+    font-size: 14px
+    /* 14px~
+    display: inline-block
+    color: #A8A8A8
+    text-decoration: none
+  strong, a:hover
+    color: #ffffff
+  span
+    height: 38px
+    display: inline
+    padding: 0 10px
+    border-bottom: 1px solid #1A1817
+
+// All levels
+
+nav
+  ul
+    li a:active
+      background: #616161 !important
+    width: 100%
+    padding: 40px 28px 25px 0
+    padding: 0
+    margin: 0
+    font-size: 13px
+    line-height: 0.5em
+    list-style: none
+    position: relative
+    .active > a
+      color: #fff !important
+      position: relative
+    li
+      &.active
+        > a:before
+          content: "\f0d9"
+          font-family: FontAwesome
+          display: block
+          height: 27px
+          line-height: normal
+          width: 27px
+          position: absolute
+          right: -21px
+          font-size: 20px
+          color: #eeeeee
+        &.open > a:before
+          content: ""
+      overflow: hidden
+      a
+        line-height: normal
+        font-size: 14px
+        padding: 10px 10px 10px 11px
+        color: #a8a8a8
+        display: block
+        font-weight: normal
+        text-decoration: none !important
+        &:focus
+          color: #c9c9c9
+        &:hover
+          color: #ffffff
+          text-decoration: none
+    b
+      float: right
+      font-size: 14px
+      margin-top: -1px
+    span.menu-item-parent
+      display: inline-block
+      margin: 0
+      padding: 0
+    li
+      &.open > a
+        color: #fff !important
+        b
+          color: #fff !important
+      li
+        border-bottom: none
+        position: relative
+    ul
+      margin: 0
+      padding: 0
+      display: none
+      background: rgba(69, 69, 69, 0.6)
+      padding: 7px 0
+      ul
+        background: transparent
+        padding: 0
+      li
+        margin: 0
+        padding: 0
+        > a
+          padding-left: 42px
+          font-size: 14px
+          font-weight: normal
+          outline: 0
+          &:hover
+            background-color: rgba(69, 69, 69, 0.8)
+            color: #ffffff
+      ul
+        li a
+          color: #bfbfbf
+          padding: 8px 10px 8px 70px
+          font-size: 14px
+          &:hover
+            background-color: #4C4F53
+            color: #ffffff
+        ul
+          li a
+            padding-left: 90px
+          ul
+            li a
+              padding-left: 110px
+            ul li a
+              padding-left: 130px
+      b
+        color: #B3B3B3
+      > li:hover b
+        color: #D5D9E2
+  > ul > li > ul > li >
+  a, ul > li > a
+    padding-top: 7px
+    padding-bottom: 7px
+  > ul > li > a > i
+    /*font-size: 121%; fa-lg overrides this so..
+    margin-right: 5px
+    width: 15px
+    display: inline-block
+    text-align: center
+    position: relative
+    > em
+      font-size: 9px
+      display: block
+      padding: 2px
+      position: absolute
+      top: -8px
+      right: -6px
+      text-decoration: none
+      font-style: normal
+      background: #ED1C24
+      color: #ffffff
+      min-width: 13px
+      border-radius: 50%
+      max-height: 13px
+      line-height: 8px
+      font-weight: bold
+      vertical-align: baseline
+      white-space: nowrap
+      text-align: center
+      border: 1px solid rgba(255, 255, 255, 0.1)
+  > ul
+    > li > ul::before
+      content: ""
+      display: block
+      position: absolute
+      z-index: 1
+      left: 23px
+      top: 0
+      bottom: 0
+      border-left: 1px solid #7A7A7A
+    ul
+      li::before
+        content: ""
+        display: block
+        position: absolute
+        width: 8px
+        left: 23px
+        top: 16px
+        border-top: 1px solid #7A7A7A
+        z-index: 1
+      ul li::before
+        content: ""
+        display: block
+        position: absolute
+        width: 18px
+        left: 10px
+        top: 17px
+        border-top: 1px solid transparent
+      li a i
+        font-size: 14px !important
+        width: 18px !important
+        text-align: center !important
+    > li:hover > ul
+      &::before, > li::before
+        border-color: #ACACAC !important
+
+/*
+ * HEADER NAV DROPDOWN LIST
+
+.header-dropdown-list
+  list-style: none
+  float: right
+  position: relative
+  margin: 0
+  > li
+    display: inline-block
+    padding-right: 5px
+    > .dropdown-toggle
+      margin-top: 16px
+      display: block
+
+//header-menu
+.btn-header
+  &.pull-right
+    margin-left: 6px
+  a > span
+    font-size: 13px
+    font-weight: normal
+    line-height: 30px
+    height: 30px
+    display: inline-block
+  > :first-child > a
+    -moz-border-radius: 2px
+    -webkit-border-radius: 2px
+    border-radius: 2px
+    cursor: default !important
+    display: inline-block
+    font-weight: bold
+    height: 30px
+    min-width: 30px
+    padding: 2px
+    text-align: center
+    text-decoration: none !important
+    -moz-user-select: none
+    -webkit-user-select: none
+    background-color: #f8f8f8
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f1f1f1))
+    background-image: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1)
+    background-image: -moz-linear-gradient(top, #f8f8f8, #f1f1f1)
+    background-image: -ms-linear-gradient(top, #f8f8f8, #f1f1f1)
+    background-image: -o-linear-gradient(top, #f8f8f8, #f1f1f1)
+    background-image: linear-gradient(top, #f8f8f8, #f1f1f1)
+    border: 1px solid #bfbfbf
+    color: #6D6A69
+    font-size: 17px
+    margin: 10px 0 0 0
+    &:hover
+      border: 1px solid #bfbfbf
+      color: #222
+      transition: all 0.0s
+      cursor: pointer
+      -webkit-box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.08)
+      box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.08)
+    &:active
+      background-color: #e8e8e8
+      background-image: -moz-linear-gradient(top, #e8e8e8 0%, #ededed 100%)
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e8e8e8), color-stop(100%, #ededed))
+      background-image: -webkit-linear-gradient(top, #e8e8e8 0%, #ededed 100%)
+      background-image: -o-linear-gradient(top, #e8e8e8 0%, #ededed 100%)
+      background-image: -ms-linear-gradient(top, #e8e8e8 0%, #ededed 100%)
+      background-image: linear-gradient(to bottom, #e8e8e8 0%, #ededed 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8e8e8', endColorstr='#ededed', GradientType=0)
+      -webkit-box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.15)
+      box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.15)
+
+//slider
+.minifyme
+  border-bottom: 1px solid #302F2F
+  background: #454545
+  color: #A8A8A8
+  text-align: center
+  padding: 0
+  width: 36px
+  height: 28px
+  display: block
+  position: absolute
+  right: -3px
+  border-radius: 5px 0px 0px 5px
+  cursor: pointer
+  margin-top: 5px
+  font-size: 19px
+  transition: all 0.1s linear 0s
+  &:hover
+    background: #646464
+    color: #E4E4E4
+    right: 0px
+
+//smart form
+.smart-form fieldset
+  display: block
+  padding: 25px 14px 5px
+  border: none
+  background: rgba(255, 255, 255, 0.9)
+  position: relative
+
+.smart-form section
+  margin-bottom: 15px
+  position: relative
+
+.smart-form .label
+  display: block
+  margin-bottom: 6px
+  line-height: 19px
+  font-weight: 400
+  font-size: 13px
+  color: #333
+  text-align: left
+
+.label
+  display: inline
+  padding: .2em .6em .3em
+  font-size: 75%
+  font-weight: bold
+  line-height: 1
+  color: #fff
+  text-align: center
+  white-space: nowrap
+  vertical-align: baseline
+  border-radius: .25em
+
+.smart-form .input
+  position: relative
+  display: block
+  font-weight: 400
+
+.smart-form
+  .radio, .checkbox
+    position: relative
+    display: block
+    font-weight: 400
+
+.smart-form footer
+  display: block
+  padding: 7px 14px 15px
+  border-top: 1px solid rgba(0,0,0,0.1)
+  background: rgba(248,248,248,0.9)
+
+.smart-form footer .btn
+  float: right
+  height: 31px
+  margin: 10px 0 0 5px
+  padding: 0 22px
+  font: 300 15px/29px "Open Sans", Helvetica, Arial, sans-serif
+  cursor: pointer
+
+#incomingFeedBadge
+  position: absolute
+  top: 0
+  background-color: red

@@ -1,0 +1,11 @@
+.padding-10
+  .row
+    .col-md-12
+      %h2
+        %i.fa.fa-list{:style=>"padding-right: 6px;"}
+          = get_blogs_view_header params[:type]
+- if @blogs.present?
+  = render partial: @blogs
+- else
+  .alert.alert-info.fade.in
+    Post your first blog

@@ -1,0 +1,73 @@
+.padding-10
+  .row
+    .col-md-12
+      %h2
+        %i.fa.fa-edit{:style=>"padding-right: 6px;"}
+        Edit #{resource_name.to_s.humanize}
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'smart-form' }) do |f|
+  %fieldset
+    .row
+      %section
+        .col.col-md-12
+          .col.col-md-12
+            %label.label
+              Email
+            %label.input
+              = f.text_field :email, class: 'form-control', readonly: true, placeholder: 'Email', autofocus: true
+              -#- if devise_mapping.confirmable? && resource.pending_reconfirmation?
+              -#  %div
+              -#    Currently waiting confirmation for: #{resource.unconfirmed_email}
+            .note-error
+              - if resource.errors.present? && blog.errors[:email].present?
+                = resource.errors[:email].join(' and ')
+        .col.col-md-12
+          .col.col-md-6
+            %label.label
+              First name
+            %label.input
+              = f.text_field :first_name, class: 'form-control', placeholder: 'First name'
+            - if resource.errors.present? && resource.errors[:first_name].present?
+              .note.note-error
+                = resource.errors[:first_name].join(' and ')
+          .col.col-md-6
+            %label.label
+              Last name
+            %label.input
+              = f.text_field :last_name, class: 'form-control', placeholder: 'Last name'
+            - if resource.errors.present? && resource.errors[:last_name].present?
+              .note.note-error
+                = resource.errors[:last_name].join(' and ')
+        .col.col-md-12
+          .col.col-md-12
+            %label.label
+              Password (leave blank if you don't want to change it)
+            %label.input
+              = f.password_field :password, class: 'form-control', placeholder: 'Password'
+            - if resource.errors.present? && resource.errors[:password].present?
+              .note.note-error
+                = resource.errors[:password].join(' and ')
+        .col.col-md-12
+          .col.col-md-12
+            %label.label
+              Confirm password
+            %label.input
+              = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password confirmation'
+            - if resource.errors.present? && resource.errors[:password_confirmation].present?
+              .note.note-error
+                = resource.errors[:password_confirmation].join(' and ')
+        .col.col-md-12
+          .col.col-md-12
+            %label.label
+              Current password (we need your current password to confirm your changes)
+            %label.input
+              = f.password_field :current_password, class: 'form-control', placeholder: 'Current Password'
+            - if resource.errors.present? && resource.errors[:current_password].present?
+              .note.note-error
+                = resource.errors[:current_password].join(' and ')
+  %footer
+    .row
+      .col.col-md-12.text-left
+        .col.col-md-12
+          = f.submit "Update", class: "btn btn-success"
+          = link_to 'Back', :back,class: "btn btn-default", style: "background-color: rgba(255, 255, 255, 0.9);"

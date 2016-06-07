@@ -1,0 +1,7 @@
+%header#header
+  #logo-group
+    %span#logo
+      = image_tag 'blog_header.gif', style: "width:35%; height:100%;"
+  %span#login-header-space
+    %a.btn.btn-success{href: new_session_path(:user)} Sign in
+    %a.btn.btn-default{href: new_registration_path(:user)} Create Account

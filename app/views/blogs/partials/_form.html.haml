@@ -1,0 +1,35 @@
+#blogFormWrapper
+  = form_for blog, html:{class: 'smart-form product-edit-form',id: 'blog_form'} do |f|
+    %fieldset
+      .row
+        %section
+          .col.col-md-12
+            .col.col-md-12
+              %label.label
+                Title
+              %label.input
+                = f.text_field :title, class: 'form-control', placeholder: 'Title'
+              .note-error
+                - if blog.errors.present? && blog.errors[:title].present?
+                  = blog.errors[:title].join(' and ')
+          .col.col-md-12
+            .col.col-md-12
+              %label.label
+                Description
+              %label.input
+                = f.cktext_area :description, class: 'form-control', placeholder: 'Description'
+              - if blog.errors.present? && blog.errors[:description].present?
+                .note.note-error
+                  = blog.errors[:description].join(' and ')
+          .col.col-md-12
+            .col.col-md-12
+              %label.checkbox.chk-option-family
+                %input{type: 'checkbox', name: 'blog[is_private]', style: "margin-right: 10px !important;", checked: blog.is_private}
+                %i>
+                Mark as Private
+    %footer
+      .row
+        .col.col-md-12.text-left
+          .col.col-md-12
+            = f.submit get_submit_btn_name(blog), class: "btn btn-success"
+            = link_to 'Back', :back,class: "btn btn-default", style: "background-color: rgba(255, 255, 255, 0.9);"
