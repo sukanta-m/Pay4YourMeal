@@ -5,9 +5,9 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :destroy, :edit, :update, :shared_friends,:mark_private_public]
 
   def index
-    @blogs = (params[:type] == 'private' ? current_user.blogs.where(:is_private => true) :
-        (params[:type] == "public" ? current_user.blogs.where(:is_private => false) :
-            (params[:type] == "latest" ? current_user.blogs.limit(10) : current_user.blogs.all))) if current_user.present?
+    @blogs = (params[:type] == 'private' ? current_user.blogs.where(:is_private => true).desc :
+        (params[:type] == "public" ? current_user.blogs.where(:is_private => false).desc :
+            (params[:type] == "latest" ? current_user.blogs.limit(10).desc : current_user.blogs.desc))) if current_user.present?
   end
 
   def new
@@ -72,7 +72,7 @@ class BlogsController < ApplicationController
 
   #get lists of blogs shared by current_user
   def shared_blogs
-    @shared_blogs = current_user.blogs.where(:is_shared => true )
+    @shared_blogs = current_user.blogs.where(:is_shared => true ).desc
   end
 
   #get all the shared users with all users
@@ -91,14 +91,14 @@ class BlogsController < ApplicationController
 
   def unread_blogs
     shared_blogs = current_user.shared_blogs.unread
-    @blogs = shared_blogs.present? ? Blog.where(:id => shared_blogs.pluck(:blog_id)) : []
+    get_blogs(shared_blogs)
     shared_blogs.update_all(:is_read => true)
   end
 
   #get all blogs shared with me
   def received_blogs
     shared_blogs = current_user.shared_blogs
-    @blogs = shared_blogs.present? ? Blog.where(:id => shared_blogs.pluck(:blog_id)) : []
+    get_blogs(shared_blogs)
   end
 
   private
@@ -111,4 +111,7 @@ class BlogsController < ApplicationController
     params.require(:blog).permit(:title, :description, :is_private, :is_shared, :user_id)
   end
 
+  def get_blogs shared_blogs
+    @blogs = shared_blogs.present? ? Blog.where(:id => shared_blogs.pluck(:blog_id) ).desc : []
+  end
 end

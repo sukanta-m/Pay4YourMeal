@@ -7,4 +7,5 @@ class Blog < ActiveRecord::Base
   validates :title, presence: true, length: {maximum: 150}
   validates :description, presence: true
 
+  scope :desc, -> {order("created_at desc")}
 end
