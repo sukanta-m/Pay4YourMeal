@@ -14,4 +14,8 @@ module ApplicationHelper
       truth || File.exists?("#{script}#{extension}")
     end
   end
+
+  def get_user_image_path(user)
+    user.avatar.present? ? user.avatar.url(:thumb) : "user_default.png"
+  end
 end

@@ -11,10 +11,6 @@ module BlogsHelper
     "#{type.present? ? type.humanize : ''} Blogs List"
   end
 
-  def get_user_image_path(user)
-    user.avatar.present? ? user.avatar.url(:thumb) : "user_default.png"
-  end
-
   def is_blog_shared?(user_id,shared_friend_ids)
     shared_friend_ids.include?(user_id.to_s) ? true : false
   end

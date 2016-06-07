@@ -26,6 +26,7 @@ gem 'ckeditor'
 gem 'resque', :require => 'resque/server'
 gem 'grape'
 gem 'grape-rabl'
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem "pry"

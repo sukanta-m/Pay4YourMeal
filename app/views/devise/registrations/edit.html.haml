@@ -5,7 +5,8 @@
         %i.fa.fa-edit{:style=>"padding-right: 6px;"}
         Edit #{resource_name.to_s.humanize}
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'smart-form' }) do |f|
+= form_for(resource, as: resource_name, url: registration_path(resource_name),
+                  html: { method: :put, class: 'smart-form', multipart: true }) do |f|
   %fieldset
     .row
       %section
@@ -19,7 +20,7 @@
               -#  %div
               -#    Currently waiting confirmation for: #{resource.unconfirmed_email}
             .note-error
-              - if resource.errors.present? && blog.errors[:email].present?
+              - if resource.errors.present? && resource.errors[:email].present?
                 = resource.errors[:email].join(' and ')
         .col.col-md-12
           .col.col-md-6
@@ -65,6 +66,17 @@
             - if resource.errors.present? && resource.errors[:current_password].present?
               .note.note-error
                 = resource.errors[:current_password].join(' and ')
+        .col.col-md-12
+          .col.col-md-12
+            %label.label
+              Profile image
+            %label.input
+              = f.file_field :avatar,class: "form-control", :tabindex => "6"
+            - if resource.errors.present? && resource.errors[:avatar_content_type].present?
+              .note-error
+                = resource.errors[:avatar_content_type].join(' and ')
+          .col.col-md-2
+            = image_tag get_user_image_path(resource), style: "width:100%;height:100%;"
   %footer
     .row
       .col.col-md-12.text-left
