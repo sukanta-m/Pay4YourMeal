@@ -15,7 +15,7 @@ class SharedBlogsController < ApplicationController
       end
 
       #send email notification to shared users
-      Delayed::Job.enqueue(SendNotificationEmailToSharedUsersWorker.new( shared_friends,current_user.id))
+      SendNotificationEmailToSharedUsersWorker.new( shared_friends,current_user.id)
       flash[:success] = "Notification email sent to shared users"
     else
       flash[:success] = "This blog didn't shared with anyone"
