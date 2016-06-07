@@ -1,5 +1,5 @@
-require 'resque/tasks'
-
-task "resque:setup" => :environment do
-  ENV['QUEUE'] = '*'
-end
+# require 'resque/tasks'
+#
+# task "resque:setup" => :environment do
+#   ENV['QUEUE'] = '*'
+# end

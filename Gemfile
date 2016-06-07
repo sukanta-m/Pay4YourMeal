@@ -23,9 +23,10 @@ gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'paperclip'
 gem 'ckeditor'
-gem 'resque', :require => 'resque/server'
+#gem 'resque', :require => 'resque/server'
 gem 'grape'
 gem 'grape-rabl'
+gem 'delayed_job_active_record'
 gem 'rails_12factor', group: :production
 
 group :development, :test do

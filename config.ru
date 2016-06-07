@@ -2,10 +2,9 @@
 
 require ::File.expand_path('../config/environment', __FILE__)
 
-require 'resque/server'
+#require 'resque/server'
 
 run Rack::URLMap.new \
-  "/"       => BlogsApp::Application,
-  "/resque" => Resque::Server.new
+  "/"       => BlogsApp::Application
 
 run Rails.application

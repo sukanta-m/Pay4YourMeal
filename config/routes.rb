@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'blogs#index'
 
   mount Ckeditor::Engine => '/ckeditor'
-  mount Resque::Server, :at => "/resque"
+  #mount Resque::Server, :at => "/resque"
   mount API => "/api", :at => '/'
 
   devise_for :users, :controllers => {:passwords => 'passwords'}
