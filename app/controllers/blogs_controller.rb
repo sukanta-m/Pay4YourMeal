@@ -28,7 +28,6 @@ class BlogsController < ApplicationController
   def show
     if @blog.present? && @blog.is_private
       if current_user.blank?
-        flash[:warning] = "Please sign in before proceed"
         authenticate_user!
       elsif @blog.user != current_user && !@blog.linked_users.include?(current_user)
         flash[:warning] = "Sorry, you don't have authorize to view the blog"
