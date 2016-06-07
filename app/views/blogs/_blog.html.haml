@@ -28,10 +28,11 @@
         %p
           %a.post-edit-link{:href => edit_blog_path(blog), title: "Edit blog"}
             %i.fa.fa-lg.fa-fw.fa-edit
-        %p
-          %a.post-edit-link#link_share_blog{:href => "javascript:void(0)", title: "Share blog with friend",
-                                            data: {href: shared_friends_blog_path(blog)} }
-            %i.fa.fa-lg.fa-fw.fa-share
+        - if User.where.not(:id => current_user.id).count > 0
+          %p
+            %a.post-edit-link#link_share_blog{:href => "javascript:void(0)", title: "Share blog with friend",
+                                              data: {href: shared_friends_blog_path(blog)} }
+              %i.fa.fa-lg.fa-fw.fa-share
         %p
           %a#make_private_public.post-edit-link{:href => "javascript:void(0)",
                                                 data:{href: mark_private_public_blog_path(blog)},
