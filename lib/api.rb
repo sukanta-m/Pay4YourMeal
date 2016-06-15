@@ -14,4 +14,16 @@ class API < Grape::API
       end
     end
   end
+
+  resources :friendships do
+    desc "Get the requested friends count"
+    get "/:id/friend_request_count", :rabl => "requested_friends_count" do
+      user = User.find_by_id(params[:id])
+      if user.present?
+        @counter_obj = OpenStruct.new({
+                                          :requested_friends_count => Friendship.requested(user).count
+                                      })
+      end
+    end
+  end
 end

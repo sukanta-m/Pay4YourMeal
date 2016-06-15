@@ -1,0 +1,5 @@
+$('#remaining_users_list').html("<%= j render 'friends/shared/users', remaining_users: @remaining_users %>")
+$('#friendsSection').html("<%= j render 'friends/shared/friends', friends: @friends %>")
+$('#friendRequestDetailsPopOver').html("<%= j render 'friendships/partials/request_lists', requested_users: @requested_users %>")
+App.unBlockUI($('#friendsTabsContainer'))
+$('#friendRequestBadge').text(<%= @requested_users.count %>)

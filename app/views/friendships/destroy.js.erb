@@ -1,0 +1,3 @@
+$('#remaining_users_list').html("<%= j render 'friends/shared/users', remaining_users: @remaining_users %>")
+$('#friendsSection').html("<%= j render 'friends/shared/friends', friends: @friends %>")
+App.unblockUI($('#friendsTabsContainer'))

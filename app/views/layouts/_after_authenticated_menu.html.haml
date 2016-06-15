@@ -8,9 +8,16 @@
         = link_to new_blog_path do
           %i.fa.fa-plus-circle
   .pull-left
-    .btn-header
+    .btn-header.pull-right
       %span
-        = link_to unread_blogs_blogs_path,class:'unread-blogs-notifiction' do
+        = link_to "javascript:void(0)",class:'friend-request-notifiction',
+            title: "Friends request", data: {href: get_requested_friends_friendships_path} do
+          %i.fa.fa-user
+          %b#friendRequestBadge.badge
+            = Friendship.requested(current_user).count
+    .btn-header.pull-right
+      %span
+        = link_to unread_blogs_blogs_path,class:'unread-blogs-notifiction', title: "Unread bogs" do
           %i.fa.fa-envelope-o
           %b#incomingFeedBadge.badge
             = current_user.shared_blogs.unread.count
@@ -24,6 +31,8 @@
         = link_to registration_path(:user), data: { confirm: "Are you sure?" }, method: :delete do
           %i.fa.fa-remove
           Unhappy?
+#friendRequestDetailsPopOver.popover.fade.bottom.in.hidden{"style" => "font-family: Liberation Sans;  color: #333333; max-width: 440px !important; width: 400px !important;"}
+  =# render "friendships/partials/request_lists",requeated_users: @requested_users
 = hidden_field_tag 'user_id',current_user.id.to_s
 %aside#left-panel
   .login-info
@@ -62,6 +71,11 @@
           %i.fa.fa-lg.fa-fw.fa-list
           %span.menu-item-parent
             Recent Blogs
+      %li
+        %a{href: friends_path}
+          %i.fa.fa-lg.fa-fw.fa-user
+          %span.menu-item-parent
+            Add Friends
       %li
         %a{href: edit_user_registration_path}
           %i.fa.fa-lg.fa-fw.fa-user

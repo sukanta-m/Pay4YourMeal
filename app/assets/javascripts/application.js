@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/tabs
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery.form-validator
@@ -65,6 +66,20 @@ var App = function() {
                 }, number);
             }
 
+        },
+        updateFriendRequestBadge: function(number){
+            if ($('#friendRequestBadge').length > 0) {
+                var user_id = $('#user_id').val();
+                setInterval(function () {
+                    $.ajax({
+                        url: '/api/friendships/' + user_id + '/friend_request_count',
+                        dataType: 'json',
+                        success: function (result) {
+                            $('#friendRequestBadge').html(result.openstruct['requested_friends_count']);
+                        }
+                    });
+                }, number);
+            }
         }
     }
 }();
@@ -88,6 +103,7 @@ $(function() {
         $(this).addClass('active');
         e.preventDefault();
     });
+
     $('#register-form-link').click(function(e) {
         $("#register-form").delay(100).fadeIn(100);
         $("#login-form").fadeOut(100);
@@ -104,6 +120,38 @@ $(function() {
         elm.style.display = 'none';
     });
 
+    $('body').on('click', '.friend-request-notifiction', function(e) {
+        if($("#friendRequestDetailsPopOver").hasClass('hidden')) {
+            //showProductDialog('Product Pricing', product_pricing)
+            position = $(this).offset()
+            height = $(this).height()
+            width = $(this).width()
+            doc_top = (position.top + height + 0) + 'px'
+            left = (position.left - $('#friendRequestDetailsPopOver').width() / 2 + width / 2) + 'px'
+            $('#friendRequestDetailsPopOver').removeClass('hidden')
+            $("#friendRequestDetailsPopOver").css({
+                display: "block",
+                top: doc_top,
+                left: left
+            });
+            $('#friendRequestDetailsPopOver .popover-title').html('Details')
+            url = $(this).attr('data-href')
+            App.blockUI($('#friendRequestDetailsPopOver'));
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (result) {
+                }
+            });
+        }
+        else
+            $("#friendRequestDetailsPopOver").addClass('hidden');
+        e.preventDefault()
+        return false
+    });
+
+
     App.updateIncomingBadge(10000);
+    App.updateFriendRequestBadge(10000)
 });
 

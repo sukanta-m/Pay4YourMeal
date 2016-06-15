@@ -77,6 +77,7 @@ class BlogsController < ApplicationController
 
   #get all the shared users with all users
   def shared_friends
+    @friends = current_user.friends
     @shared_friend_ids = @blog.linked_users.map{|user| user.id.to_s} if @blog.present?
   end
 

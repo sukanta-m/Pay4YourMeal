@@ -1,0 +1,29 @@
+.padding-10
+  .row
+    .col-md-12
+      %h2
+        %i.fa.fa-list{:style=>"padding-right: 6px;"}
+          Friends
+%article
+  .col.col-md-12.padding-15
+    %div.padding-10
+      %h2
+        #friendsTabsContainer.row.hidden
+          #friendsTabs
+            %ul
+              %li
+                = link_to "Friends", '#friendsSection', class: 'link-product-tab1'
+              %li
+                = link_to "Add friend", '#addFriend', class: 'link-product-tab1'
+
+            #friendsSection.custom-tab.padding-10{style: "width: 100%;float: left;"}
+              = render 'friends/shared/friends', friends: @friends
+
+            #addFriend.custom-tab.padding-10{style: "width: 100%;float: left;"}
+              .col.col-md-12.padding-0
+                .col-md-8.padding-15
+                  = text_field_tag :search, params[:search], class: "form-control",
+                                        :placeholder => "Search users", data: {href: search_user_friends_path}
+              #remaining_users_list{style: "width:100%;float:left;"}
+                = render 'friends/shared/users', remaining_users: @remaining_users
+

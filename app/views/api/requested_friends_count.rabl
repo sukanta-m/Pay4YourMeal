@@ -1,0 +1,2 @@
+object @counter_obj
+attributes :requested_friends_count

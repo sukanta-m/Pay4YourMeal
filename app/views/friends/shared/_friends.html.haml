@@ -1,0 +1,17 @@
+- if friends.present?
+  %ul
+    - friends.each do |frnd|
+      %li
+        .col-md-12.padding-0
+          = image_tag get_user_image_path(frnd),
+                              class: "user-image",
+                              title: "#{frnd.full_name.presence || frnd.email}"
+        .col-md-12.padding-0
+          %span{style: "font-size: 11px; padding: 5px;float: left;width: 100%;"}
+            = frnd.full_name[0,14]
+        .col-md-12.padding-0
+          = link_to "Unfriend", friendship_path(current_user, :friend_id => frnd.id),
+            class: "btn btn-warning width-100",method: :delete, data: {confirm: "Are you sure?", remote: true}
+- else
+  .alert.alert-info.fade.in
+    You don't have any friend yet

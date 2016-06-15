@@ -14,6 +14,16 @@ class User < ActiveRecord::Base
   has_many :shared_blogs, dependent: :destroy
   has_many :blogs_shares, class_name: "Blog", through: :shared_blogs
 
+  has_many :friendships
+  has_many :pending_friends,
+           ->(object){where("status = 0")},
+           :through => :friendships,
+           :source => :friend
+  has_many :friends,
+           ->(object){where("status = 2")},
+           :through => :friendships,
+           :source => :friend
+
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -10,7 +10,7 @@ class SharedBlogsController < ApplicationController
 
     if params[:shared_friends].present?
       shared_friends.each do |user_id|
-        shared_blog = @blog.shared_blogs.new(:user_id => user_id, :shared_date => DateTime.now)
+        shared_blog = @blog.shared_blogs.new(:user_id => user_id, :shared_date => DateTime.now, :blogger_id => current_user.id)
         shared_blog.save
       end
 

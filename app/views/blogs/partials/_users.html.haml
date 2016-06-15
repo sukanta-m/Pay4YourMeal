@@ -10,16 +10,21 @@
       .padding-10
         #mediaUploadOptions
           .row.margin-bottom-10{style: "margin-right:0px;"}
-            = form_tag shared_blogs_path(@blog), method: :post, id: "shared_blog_form" do
-              %ul
-                - User.where.not(:id => current_user.id).each do |user|
-                  - is_checked = is_blog_shared?(user.id,@shared_friend_ids)
-                  %li{class: "#{ is_checked ? "select-friend" : ""}"}
-                    = check_box_tag 'shared_friends[]', user.id, is_checked , class:"hidden"
-                    = image_tag get_user_image_path(user),
-                      class: "user-image",
-                      title: "#{user.full_name.presence || user.email}"
+            - if @friends.present?
+              = form_tag shared_blogs_path(@blog), method: :post, id: "shared_blog_form" do
+                %ul
+                  - @friends.each do |user|
+                    - is_checked = is_blog_shared?(user.id,@shared_friend_ids)
+                    %li{class: "#{ is_checked ? "select-friend" : ""}"}
+                      = check_box_tag 'shared_friends[]', user.id, is_checked , class:"hidden"
+                      = image_tag get_user_image_path(user),
+                        class: "user-image",
+                        title: "#{user.full_name.presence || user.email}"
+            - else
+              .alert.alert-info.fade.in
+                You don't have any friend yet
     .modal-footer
-      %button.btn.btn-info{:id => "btn_associate_media_to_product", :type => "button",
+      - if @friends.present?
+        %button.btn.btn-info{:id => "btn_associate_media_to_product", :type => "button",
                   onclick: '$("#shared_blog_form").submit(); return true;'} Share
       %button.btn.btn-warning{"data-dismiss" => "modal", :type => "button"} Cancel

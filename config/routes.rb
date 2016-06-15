@@ -22,4 +22,15 @@ Rails.application.routes.draw do
       put 'mark_private_public'
     end
   end
+
+  resources :friendships, only: [:create, :update, :destroy] do
+    collection do
+      get 'get_requested_friends'
+    end
+  end
+  resources :friends, only: [:index] do
+    collection do
+      get 'search_user'
+    end
+  end
 end
