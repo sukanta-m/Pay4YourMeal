@@ -1,0 +1,8 @@
+%p
+  Hello
+
+%p You have been requested to be a member of #{@member.group.name} group. You can do this through the link below.
+
+%a{href: @url.to_s+'?token='+@member.token} Accept invitation
+
+%p Thanks

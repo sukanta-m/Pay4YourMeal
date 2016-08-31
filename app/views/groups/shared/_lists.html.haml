@@ -1,0 +1,28 @@
+%table#datatable_fixed_column.table.table-striped.table-bordered.smart-form.datatable_fixed_column
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Admin
+      %th Members
+      %th
+  %tbody
+    - if groups.present?
+      - groups.each do |group|
+        %tr{class: "#{group == current_group ? 'group-active' : ''}"}
+          %td{style: "width:15%;"}
+            = group.try(:name)
+          %td{style: "width:30%;"}
+            = group.try(:description)
+          %td
+            = group.author == current_user ? "You" : group.author.full_name
+          %td
+            = link_to "click here", group_path(group)
+          %td
+            = link_to "Edit", "#", class: 'btn btn-warning'
+            = link_to "Destroy", "#", class: "btn btn-danger"
+    - else
+      %tr
+        %td{colspan: '6'}
+          .alert.alert-info.fade.in{style: "padding:15px;"}
+            You are not member of any group.

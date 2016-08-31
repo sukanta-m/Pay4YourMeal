@@ -3,6 +3,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
     create_table(:users) do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
+      t.string :first_name
+      t.string :last_name
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -10,6 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :reset_password_sent_at
 
       ## Rememberable
+      t.boolean :remember_me
       t.datetime :remember_created_at
 
       ## Trackable

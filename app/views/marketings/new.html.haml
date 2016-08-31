@@ -1,0 +1,8 @@
+.padding-10
+  .row
+    .col-md-10
+      %h2
+        %i.fa.fa-home{:style=>"padding-right: 6px;"}
+          Marketings/ Create Marketing
+    .col-md-2.pull-right{style: "margin: 20px 0;"}
+= render partial: "marketings/partials/form", locals: { marketing: @marketing }

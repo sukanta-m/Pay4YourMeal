@@ -50,14 +50,6 @@
                     .note-error
                       - if resource.errors.present? && resource.errors[:password_confirmation].present?
                         = resource.errors[:password_confirmation].join(' and ')
-                    .form-group.input-group
-                      %span.input-group-addon
-                        %i.glyphicon.glyphicon-picture
-                      = f.file_field :avatar,class: "form-control", :tabindex => "6"
-                    .note-error
-                      - if resource.errors.present? && resource.errors[:avatar_content_type].present?
-                        = resource.errors[:avatar_content_type].join(' and ')
-
                     .form-group
                       .row
                         .col-sm-12

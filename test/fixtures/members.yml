@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  invited_by: 1
+  group_id: 
+  respond_on: 2016-08-20 10:34:06
+  is_accepted: false
+
+two:
+  user_id: 
+  invited_by: 1
+  group_id: 
+  respond_on: 2016-08-20 10:34:06
+  is_accepted: false

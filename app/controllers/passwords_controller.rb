@@ -27,6 +27,7 @@ class PasswordsController < Devise::PasswordsController
   end
 
   private
+
   def get_url
     edit_user_password_url :host => request.domain
   end

@@ -1,0 +1,40 @@
+.row.padding-20-top-bottom
+  .panel-group
+    %i.fa.fa-lg.fa-users
+      %span{style: "font-size:20px;"}
+        = @group.try(:name) + " details"
+  .col.col-md-12
+    = form_tag(memberships_path, method: 'post') do
+      .right-inner-addon
+        .col.col-md-6
+          %input{type: "text", name: "email", class: "form-control", placeholder:"Email"}
+        .col.col-md-6
+          %input{type: "submit", id: "invite_member", value: "Send Invitation", class: "btn btn-primary"}
+
+  .panel-group
+    - @users.each do |user|
+      .panel.panel-default
+        .panel-heading
+          %span
+            = user.full_name.humanize
+          %span{style: "float: right; color: #fffb00;"}
+            = current_date.strftime("%B, %Y")
+        .panel-body
+          %div
+            .monthly-meals-count
+              %span{style: "font-size: 32px;"}
+                = user.meals_count(current_group, current_date)
+              %span meals
+          %div{style: "font-size: 17px; margin: 5px;"}
+            %div
+              %span Expense:
+              %span
+                = user.spent_amount(current_group, current_date)
+            %div
+              %span For self:
+              %span
+                = user.total_amount_till(current_group, current_date)
+            %div
+              %span Due:
+              %span
+                = user.due(current_group, current_date)

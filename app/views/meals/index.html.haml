@@ -1,0 +1,16 @@
+.row.padding-20-top-bottom
+  .col.col-md-8.padding-0
+    .right-inner-addon
+      %i.fa.fa-search{style: "right:inherit;"}
+      %input{type:"search",class:"form-control txt-invoice-search", style: "padding: 6px 29px", placeholder:"Search by name"}
+      %span.clear-search-text.fa.fa-remove{style: " top:0;"}
+
+#mealsGrid.jarviswidget.jarviswidget-color-blueDark{'data-widget-editbutton' => 'false'}
+  %header
+    %span.widget-icon
+      %i.fa.fa-list>
+    %h2#header-title Meals/ Meal Lists
+  %div{style: "overflow:auto;"}
+    .jarviswidget-editbox
+    .widget-body.no-padding#lists_section
+      = render 'meals/shared/lists', members: @members

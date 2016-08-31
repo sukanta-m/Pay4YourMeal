@@ -1,0 +1,258 @@
+// Place all the styles related to the marketings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//header
+#header
+  display: block
+  height: 49px
+  position: relative
+  margin: 0
+  padding: 0 13px 0 0
+  background-color: #f3f3f3
+  background-image: -moz-linear-gradient(top, #f3f3f3, #e2e2e2)
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#e2e2e2))
+  background-image: -webkit-linear-gradient(top, #f3f3f3, #e2e2e2)
+  background-image: -o-linear-gradient(top, #f3f3f3, #e2e2e2)
+  background-image: linear-gradient(to bottom, #f3f3f3, #e2e2e2)
+  background-repeat: repeat-x
+  > div
+    display: inline-block
+    vertical-align: middle
+    height: 49px
+    float: left
+    &.open
+      font-weight: bold
+
+#main .row
+  padding: 0px
+  margin: 0px
+
+.post-title
+  padding: 0 0 20px
+  position: relative
+.post-title h1
+  border-bottom: 1px solid #ddd
+  color: #990000
+  font-size: 3em
+  font-style: italic
+  font-weight: normal
+  min-height: 1em
+  padding: 36px 0 16px 20%
+
+.post-title h1 a
+  color: #990000
+
+.post-permalink
+  color: #000
+a
+  text-decoration: none
+
+.hentry .post-date
+  font-style: italic
+  left: 52px
+  line-height: 1.9em
+  position: absolute
+  text-align: center
+  top: 15px
+  z-index: 1
+  font-family: "Adobe Garamond Pro", Garamond, Palatino, "Palatino Linotype", Times, "Times New Roman", Georgia, serif
+
+.hentry .post-date *
+  display: block
+  padding: 0 15px
+  position: relative
+
+.post-date strong
+  font-size: 4.9em
+  font-weight: normal
+  letter-spacing: -0.1em
+  position: relative
+  z-index: 2
+
+.post-date em
+  font-size: 1.9em
+  top: 9px
+
+.post-date span
+  color: #555
+  font-size: 1.1em
+  font-variant: small-caps
+  top: 4px
+
+.post-info
+  color: #555
+  font-variant: small-caps
+  //padding: 10px 2.8% 0 20%
+
+.post-info p
+  float: left
+  width: 75.1%
+
+.post-info a
+  color: #675f34
+
+a
+  background: transparent
+  border: 0
+  font-size: 100%
+  margin: 0
+  outline: 0
+  padding: 0
+  vertical-align: baseline
+
+.post-content
+  margin: 0 0 30px 0
+  width: 100%
+  float: left
+
+.post-extras
+  color: #333
+  float: left
+  font-style: italic
+  line-height: 170%
+  padding: 25px 0 25px
+  text-align: center
+  width: 20%
+
+.expand-blog
+  max-height: auto
+  overflow: none
+
+.collapse-blog
+  max-height: 180px
+  overflow: hidden
+
+#expand_collapse_blog
+  float: left
+  width: 100%
+  text-align: center
+  background-color: #FFF
+  color: #81B981
+  cursor: pointer
+  text-decoration: underline
+
+#expand_collapse_blog:hover
+  background-color: #EFEFEF
+
+.post-entry
+  color: #333
+  float: right
+  font-size: 13px
+  padding: 0px 2.8% 0 0
+  width: 80%
+
+.post-extras
+  p, li
+    clear: both
+    float: right
+    font-size: 0.9em
+    padding-bottom: 5px
+    width: 100%
+
+article
+  background: rgba(255, 255, 255, 0.9)
+  width: 100%
+  float: left
+
+.user-image
+  width: 41px
+  border-radius: 18px
+
+#shared_blog_form
+  ul
+    list-style: none
+    width: 100%
+    float: left
+    li
+      float: left
+      text-align: center
+      margin: 8px
+      cursor: pointer
+      border-style: solid
+      border-color: #B3B3B3
+      border-width: 1px
+      img
+        border-radius: 0
+      img:hover
+        transform: scale(2)
+.select-friend
+  border-style: solid !important
+  border-color: #00DC11 !important
+  border-width: 2px !important
+
+.post-shared-friends
+  width: 80%
+  float: right
+  ul
+    list-style: none
+    width: 100%
+    float: left
+    padding: 0
+    li
+      float: left
+      text-align: center
+      margin: 8px
+      cursor: pointer
+      img
+        border-radius: 20px
+      img:hover
+        transform: scale(3)
+
+#login-header-space
+  line-height: 42px
+
+.format-style-inline-item-section
+  min-height: 100px
+  border-width: 5px 0px
+  border-style: groove
+  margin: 20px 0px!important
+
+.padding-nested-form-label
+  padding: 35px 0 !important
+  text-align: center!important
+
+.padding-top-10
+  padding: 10px 0!important
+
+.bottom-border
+  border-bottom-width: 1px
+  border-bottom-style: dotted
+
+.errspan
+  float: right
+  margin-right: 1px !important
+  margin-top: -32px !important
+  position: relative
+  z-index: 7
+  color: #fff
+  width: 4%
+  /* height: 15px; */
+  padding: 9px 9px !important
+  background-color: #999
+
+.right-inner-addon
+  position: relative
+
+.right-inner-addon input
+  padding-right: 30px
+
+.right-inner-addon i
+  position: absolute
+  right: 0
+  padding: 10px 12px
+  pointer-events: none
+
+.right-inner-addon .fa-remove
+  top: 0
+  position: absolute
+  right: 0
+  padding: 10px 10px
+  display: inline-block
+
+.right-inner-addon .fa-remove
+  &:hover
+    color: red
+
+.pagination-right
+  float: right

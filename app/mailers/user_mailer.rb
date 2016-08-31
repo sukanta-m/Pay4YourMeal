@@ -7,4 +7,10 @@ class UserMailer < ActionMailer::Base
     @url = url
     mail to: user.email, subject: "Reset password instructions"
   end
+
+  def membership_request member, url
+    @member = member
+    @url = url
+    mail to: member.user.email, subject: "Membership invitation"
+  end
 end

@@ -9,6 +9,8 @@
   %body#login.animated.fadeInDown.desktop-detected
     - if user_signed_in?
       = render :partial => "layouts/after_authenticated_menu"
+      #group_create_modal.modal.fade{:role => "dialog"}
+      %input{type: 'hidden', value: "#{current_group.try(:id)}", id: "hdn_current_group_id"}
     - else
       = render :partial => "layouts/authentication_header"
     #main{role: 'main',style:"min-height: 512px;"}

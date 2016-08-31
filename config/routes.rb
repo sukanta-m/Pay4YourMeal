@@ -1,36 +1,26 @@
 Rails.application.routes.draw do
 
-  root 'blogs#index'
-
-  mount Ckeditor::Engine => '/ckeditor'
-  #mount Resque::Server, :at => "/resque"
-  mount API => "/api", :at => '/'
+  root 'homes#index'
 
   devise_for :users, :controllers => {:passwords => 'passwords'}
 
-  resources :blogs do
+  resources :marketings do
+    put :approve
+  end
+  resources :groups do
     collection do
-      get 'shared_blogs'
-      get 'unread_blogs'
-      get 'received_blogs'
+      resources :memberships do
+        get :add_password
+        put :update_member_details
+      end
+      get :any_group
+      get :switch
+      post :change_date
     end
-
-    member do
-      resources :shared_blogs, only: [:create]
-
-      get 'shared_friends'
-      put 'mark_private_public'
+    resources :meals, only: [:index]
+    resources :members do
+      resources :meals, only: [:create, :update]
     end
   end
-
-  resources :friendships, only: [:create, :update, :destroy] do
-    collection do
-      get 'get_requested_friends'
-    end
-  end
-  resources :friends, only: [:index] do
-    collection do
-      get 'search_user'
-    end
-  end
+  get "memberships/invitation", to: "memberships#accept"
 end

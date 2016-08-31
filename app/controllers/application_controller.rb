@@ -7,10 +7,20 @@ class ApplicationController < ActionController::Base
               ::AbstractController::ActionNotFound, ActiveRecord::RecordNotFound,
               with: lambda { |exception| render_error 404, exception }
 
+  helper_method :current_group, :current_date
+
+  def current_group
+    @current_group ||= current_user.get_current_group(session[:group_id])
+  end
+
+  def current_date
+    DateTime.parse(session[:current_date] || Date.today.to_s)
+  end
+
   protected
 
   def configure_devise_permitted_parameters
-    registration_params = [:first_name, :last_name, :email, :password, :password_confirmation,:avatar]
+    registration_params = [:first_name, :last_name, :email, :password, :password_confirmation]
 
     if params[:action] == 'update'
       devise_parameter_sanitizer.for(:account_update) {

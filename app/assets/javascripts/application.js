@@ -11,147 +11,104 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui/tabs
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require bootstrap-sprockets
 //= require jquery.form-validator
-//= require ckeditor/init
+//= require jquery_nested_form
+//= require bootstrap-datepicker
+
 
 function htmlbodyHeightUpdate(){
-    var height3 = $( window ).height();
-    var height1 = $('.nav').height()+50;
-    height2 = $('.main').height();
-    if(height2 > height3){
-        $('html').height(Math.max(height1,height3,height2)+10);
-        $('body').height(Math.max(height1,height3,height2)+10);
-    }
-    else
-    {
-        $('html').height(Math.max(height1,height3,height2));
-        $('body').height(Math.max(height1,height3,height2));
-    }
+  var height3 = $( window ).height();
+  var height1 = $('.nav').height()+50;
+  height2 = $('.main').height();
+  if(height2 > height3){
+    $('html').height(Math.max(height1,height3,height2)+10);
+    $('body').height(Math.max(height1,height3,height2)+10);
+  }
+  else
+  {
+    $('html').height(Math.max(height1,height3,height2));
+    $('body').height(Math.max(height1,height3,height2));
+  }
 
 }
-var App = function() {
-    return {
-        blockUI: function (el) {
-            el.block({
-                message: '',
-                css: {
-                    backgroundColor: 'none'
-                },
-                overlayCSS: {
-                    backgroundColor: '#FFFFFF',
-                    backgroundImage: "url('/assets/ajax-loader.gif')",
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    opacity: 0.67
-                }
-            });
-        },
-        unBlockUI: function (el) {
-            el.unblock();
-        },
-        updateIncomingBadge: function(number) {
-            if ($('#incomingFeedBadge').length > 0) {
-                var user_id = $('#user_id').val();
-                setInterval(function () {
-                    $.ajax({
-                        url: '/api/users/' + user_id + '/unread_blog_count',
-                        dataType: 'json',
-                        success: function (result) {
-                            $('#incomingFeedBadge').html(result.openstruct['unread_blogs_count']);
-                        }
-                    });
-                }, number);
-            }
 
-        },
-        updateFriendRequestBadge: function(number){
-            if ($('#friendRequestBadge').length > 0) {
-                var user_id = $('#user_id').val();
-                setInterval(function () {
-                    $.ajax({
-                        url: '/api/friendships/' + user_id + '/friend_request_count',
-                        dataType: 'json',
-                        success: function (result) {
-                            $('#friendRequestBadge').html(result.openstruct['requested_friends_count']);
-                        }
-                    });
-                }, number);
-            }
-        }
+function checkGroupExist(){
+  return $.ajax({
+    url: "/groups/any_group",
+    type: 'GET',
+    success: function(res) {
+
+    },
+    error: function() {
+
     }
+  });
+}
+
+var App = function() {
+  return {
+    blockUI: function (el) {
+      el.block({
+        message: '',
+        css: {
+          backgroundColor: 'none'
+        },
+        overlayCSS: {
+          backgroundColor: '#FFFFFF',
+          backgroundImage: "url('/assets/ajax-loader.gif')",
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          opacity: 0.67
+        }
+      });
+    },
+    unBlockUI: function (el) {
+      el.unblock();
+    }
+  }
 }();
 
-$(function() {
-    $.validate();
+$(document).ready(function () {
 
+  $.validate();
+  checkGroupExist();
+  $('.datepicker').datepicker({
+    format: "dd/mm/yyyy"
+  });
+
+  $("#date_changer").datepicker( {
+    format: "dd-mm-yyyy",
+    startView: "months",
+    minViewMode: "months"
+  });
+
+  $(".is-numeric").keypress(function(event) {
+    // Backspace, tab, enter, end, home, left, right
+    // We don't support the del key in Opera because del == . == 46.
+    var controlKeys = [8, 9, 13, 35, 36, 37, 39];
+    // IE doesn't support indexOf
+    var isControlKey = controlKeys.join(",").match(new RegExp(event.which));
+    // Some browsers just don't raise events for control keys. Easy.
+    // e.g. Safari backspace.
+    if (!event.which || // Control keys in most browsers. e.g. Firefox tab is 0
+        (48 <= event.which && event.which <= 57) || // Always 1 through 9
+        isControlKey) { // Opera assigns values for control keys.
+      return;
+    } else {
+      event.preventDefault();
+    }
+  });
+
+  htmlbodyHeightUpdate();
+  $( window ).resize(function() {
     htmlbodyHeightUpdate();
-    $( window ).resize(function() {
-        htmlbodyHeightUpdate();
-    });
-    $( window ).scroll(function() {
-        height2 = $('.main').height();
-        htmlbodyHeightUpdate();
-    });
-
-    $('#login-form-link').click(function(e) {
-        $("#login-form").delay(100).fadeIn(100);
-        $("#register-form").fadeOut(100);
-        $('#register-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
-
-    $('#register-form-link').click(function(e) {
-        $("#register-form").delay(100).fadeIn(100);
-        $("#login-form").fadeOut(100);
-        $('#login-form-link').removeClass('active');
-        $(this).addClass('active');
-        e.preventDefault();
-    });
-
-    $('#menu_expand').on("click", function(){
-       elm = $(this).find(".expand_compress")[0]
-       if(elm.style.display == "none")
-         elm.style.display = 'block';
-       else
-        elm.style.display = 'none';
-    });
-
-    $('body').on('click', '.friend-request-notifiction', function(e) {
-        if($("#friendRequestDetailsPopOver").hasClass('hidden')) {
-            //showProductDialog('Product Pricing', product_pricing)
-            position = $(this).offset()
-            height = $(this).height()
-            width = $(this).width()
-            doc_top = (position.top + height + 0) + 'px'
-            left = (position.left - $('#friendRequestDetailsPopOver').width() / 2 + width / 2) + 'px'
-            $('#friendRequestDetailsPopOver').removeClass('hidden')
-            $("#friendRequestDetailsPopOver").css({
-                display: "block",
-                top: doc_top,
-                left: left
-            });
-            $('#friendRequestDetailsPopOver .popover-title').html('Details')
-            url = $(this).attr('data-href')
-            App.blockUI($('#friendRequestDetailsPopOver'));
-            $.ajax({
-                url: url,
-                type: 'GET',
-                success: function (result) {
-                }
-            });
-        }
-        else
-            $("#friendRequestDetailsPopOver").addClass('hidden');
-        e.preventDefault()
-        return false
-    });
-
-
-    App.updateIncomingBadge(10000);
-    App.updateFriendRequestBadge(10000)
+  });
+  $( window ).scroll(function() {
+    height2 = $('.main').height();
+    htmlbodyHeightUpdate();
+  });
 });
-

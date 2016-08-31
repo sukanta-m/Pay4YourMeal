@@ -11,7 +11,8 @@
  * file per style scope.
  *
  *= require font-awesome
- *= require jquery-ui/tabs
+ *= require bootstrap-datepicker3
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_self
  */
 
@@ -19,211 +20,445 @@
 @import 'bootstrap-sprockets'
 @import 'bootstrap'
 
-html
-  margin: 0
-  padding: 0
-  height: 100%
-  background: url('/assets/mybg.png') #ffffff
-  overflow-x: hidden
+.panel-group .panel
+  margin: 0 1%!important
 
-body
-  margin: 0
-  padding: 0
-  height: 100%
-  background: url('/assets/mybg.png') #ffffff
-  direction: ltr
+th,td
+  vertical-align: middle!important
 
-#main
-  display: block
-  margin-left: 220px
-  padding: 0
-  min-height: 500px
+.panel-group .panel
+  width: 31%
+  float: left
 
-#header
-  display: block
-  height: 49px
-  position: relative
-  margin: 0
-  padding: 0 13px 0 0
-  background-color: #f3f3f3
-  background-image: -moz-linear-gradient(top, #f3f3f3, #e2e2e2)
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f3f3f3), to(#e2e2e2))
-  background-image: -webkit-linear-gradient(top, #f3f3f3, #e2e2e2)
-  background-image: -o-linear-gradient(top, #f3f3f3, #e2e2e2)
-  background-image: linear-gradient(to bottom, #f3f3f3, #e2e2e2)
-  background-repeat: repeat-x
-  > div
-    display: inline-block
-    vertical-align: middle
-    height: 49px
-    float: left
-    &.open
-      font-weight: bold
+.panel-group
+  width: 100%
+  float: left
+  margin: 20px 0
 
-.panel-login
-  border-color: #ccc
-  -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2)
-  -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2)
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2)
-  > .panel-heading
-    color: #00415d
-    background-color: #fff
-    border-color: #fff
-    text-align: center
-    a
-      text-decoration: none
-      color: #666
-      font-weight: bold
-      font-size: 15px
-      -webkit-transition: all 0.1s linear
-      -moz-transition: all 0.1s linear
-      transition: all 0.1s linear
-      &.active
-        color: #029f5b
-        font-size: 18px
-    hr
-      margin-top: 10px
-      margin-bottom: 0px
-      clear: both
-      border: 0
-      height: 1px
-      background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0))
-      background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0))
-      background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0))
-      background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0))
-  input
-    &[type="text"], &[type="email"], &[type="password"]
-      height: 45px
-      border: 1px solid #ddd
-      font-size: 16px
-      -webkit-transition: all 0.1s linear
-      -moz-transition: all 0.1s linear
-      transition: all 0.1s linear
-    &:hover, &:focus
-      outline: none
-      -webkit-box-shadow: none
-      -moz-box-shadow: none
-      box-shadow: none
-      border-color: #ccc
+.panel-default > .panel-heading
+  background-color: #54c7ad!important
+  color: #fff!important
+  font-size: 15px
 
-.btn-login
-  background-color: #59B2E0
-  outline: none
-  color: #fff
-  font-size: 14px
-  height: auto
-  font-weight: normal
-  padding: 14px 0
-  text-transform: uppercase
-  border-color: #59B2E6
-  &:hover, &:focus
-    color: #fff
-    background-color: #53A3CD
-    border-color: #53A3CD
+.panel-body
+  font-size: 34px
+  text-align: center
 
-.forgot-password
-  text-decoration: underline
-  color: #888
-  &:hover, &:focus
-    text-decoration: underline
-    color: #666
+.monthly-meals-count
+  width: 32%
+  margin: auto
+  /* padding: 9px; */
+  background-color: #9ace99
+  border-radius: 5px
+  font-size: 13px
 
-.btn-register
-  background-color: #1CB94E
-  outline: none
-  color: #fff
-  font-size: 14px
-  height: auto
-  font-weight: normal
-  padding: 14px 0
-  text-transform: uppercase
-  border-color: #1CB94A
-  &:hover, &:focus
-    color: #fff
-    background-color: #1CA347
-    border-color: #1CA347
+textarea
+  width: 96%!important
+.col
+  padding: 0!important
+/*navbar manipulation
 
-#login-header-space
-  float: right
-  text-align: right
-  display: block
-  vertical-align: middle
-  line-height: 43px
-  > *
-    font-size: 13px
-    margin-right: 14px
-    vertical-align: -3px
-    font-weight: 400
-  .btn
-    font-weight: bold
-    text-transform: uppercase
-  > *
-    display: inline-block
-
-#login
-  #main
-    margin: 0
-    padding: 30px 0
-    background: url("/assets/mybg.png") #ffffff
-
-//footer
-footer, #footer
-  background-color: #f3f3f3
-  padding: 16px 0
-  border-top: 2px solid #b8babd
-
-input.form-control
+.navbar
   border-radius: 0
+  margin-bottom: 0
 
-//error
-.smart-form .note, .note
-  margin-top: 6px
-  padding: 3px 5px
-  font-size: 11px
-  line-height: 15px
-  color: #999
-  background-color: #F7F2CE
-  border-style: solid
-  border-width: thin
-  border-color: #F1C49E
+body, html
+  height: 100%
+  background: url('/assets/mybg.png') #ffffff
 
-.note-error
-  font-size: 12px !important
-  color: #A90329 !important
-  font-size: 12px !important
-  color: #A90329 !important
+/* remove outer padding
+#main .col
+  padding: 0!important
+
+.container-fluid .row
+  padding: 0px
+  margin: 0px
+
+/*Remove rounded coners
+
+nav.sidebar
+  &.navbar
+    border-radius: 0px
+  -webkit-transition: margin 200ms ease-out
+  -moz-transition: margin 200ms ease-out
+  -o-transition: margin 200ms ease-out
+  transition: margin 200ms ease-out
+
+/* Add gap to nav and right windows.
+
+/* .....NavBar: Icon only with coloring/layout.....
+
+/*small/medium side display
+@media (min-width: 768px)
+  /*Allow main to be next to Nav
+  .main
+    width: calc(100%)
+    /*keeps 100% minus nav size
+    float: right
+  /*lets nav bar to be showed on mouseover
+  nav.sidebar
+    &:hover + .main
+      margin-left: 200px
+    &.navbar.sidebar > .container .navbar-brand
+      margin-left: 0px
+  /*Center Brand
+  .navbar > .container-fluid .navbar-brand
+    margin-left: 0px
+  /*Center Brand
+  nav.sidebar
+    .navbar-brand, .navbar-header
+      text-align: center
+      width: 100%
+      margin-left: 0px
+    a
+      padding-right: 13px
+    .navbar-nav
+      > li
+        &:first-child
+          border-top: 1px #e5e5e5 solid
+        border-bottom: 1px #e5e5e5 solid
+      .open .dropdown-menu
+        position: static
+        float: none
+        width: auto
+        margin-top: 0
+        background-color: transparent
+        border: 0
+        -webkit-box-shadow: none
+        box-shadow: none
+    .navbar-collapse, .container-fluid
+      padding: 0 0px 0 0px
+  /*Center Icons
+  /*adds border top to first nav box
+  /*adds border to bottom nav boxes
+  /* Colors/style dropdown box
+  /*allows nav box to use 100% width
+  /*colors dropdown box text
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a
+    color: #777
+  /*gives sidebar width/height
+  nav.sidebar
+    width: 200px
+    height: 100%
+    margin-left: -160px
+    float: left
+    z-index: 8000
+    margin-bottom: 0px
+    li
+      width: 100%
+    &:hover
+      margin-left: 0px
+  /*give sidebar 100% width;
+  /* Move nav to full on mouse over
+  /*for hiden things when navbar hidden
+  .forAnimate
+    opacity: 0
+
+/* .....NavBar: Fully showing nav bar.....
+
+@media (min-width: 1330px)
+  /*Allow main to be next to Nav
+  #main
+    width: calc(100% - 220px)
+    /*keeps 100% minus nav size
+    margin-left: 220px
+  /*Show all nav
+  nav.sidebar
+    margin-left: 0px
+    float: left
+    .forAnimate
+      opacity: 1
+/*Show hidden items on nav
+
+nav
+  &.sidebar .navbar-nav .open .dropdown-menu > li > a
+    &:hover, &:focus
+      color: #CCC
+      background-color: transparent
+  &:hover .forAnimate
+    opacity: 1
+
+section
+  padding-left: 15px
+
+/* teal theme
+.jarviswidget > header
+  height: 34px
+  /* make sure ".jarviswidget-loader" is also the same height or it will flicker during collapse
+  padding: 0
+  line-height: 40px
+
+.ui-sortable .jarviswidget-sortable > header
+  cursor: move
+  -moz-border-radius: 0px
+  -khtml-border-radius: 0px
+  -webkit-border-radius: 0px
+  border-radius: 0px
+  line-height: normal
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.05)
+  -moz-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.05)
+  -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.05)
+
+.jarviswidget > header > .widget-icon
+  display: block
+  width: 30px
+  height: 32px
+  position: relative
+  float: left
+  font-size: 111%
+  line-height: 32px
+  text-align: center
+  margin-right: -10px
+
+.ui-sortable .jarviswidget-sortable.jarviswidget-collapsed > header
+  -moz-border-radius: 0px
+  -khtml-border-radius: 0px
+  -webkit-border-radius: 0px
+  border-radius: 0px
+
+.jarviswidget > header
+  h2
+    height: 100%
+    width: auto
+    display: inline-block
+    font-size: 14px
+    position: relative
+    margin: 0
+    line-height: 34px
+    font-weight: normal
+    letter-spacing: 0px
+  >
+  h2
+    margin-left: 10px
+    float: left
+    \:first-child.widget-icon
+      margin-left: 0
+  .jarviswidget-icon
+    width: 16px
+    height: 16px
+    float: left
+    margin: 12px 10px 0 0
+    display: block
+    zoom: 1
+    z-index: 4000
+
+.jarviswidget-ctrls
+  width: auto
+  float: right
+  padding: 0
+  margin: 0
+  .button-icon
+    min-width: 30px
+    height: 32px
+    float: left
+    position: relative
+    font-family: Arial, Helvetica, sans-serif
+    border-left: 1px solid rgba(0, 0, 0, 0.09)
+    &:hover
+      background-color: rgba(0, 0, 0, 0.05)
+
+.jarviswidget-loader
+  width: 32px
+  height: 32px
+  margin: 0
+  float: rig
+
+.jarviswidget-color-blueDark
+  > header
+    background: #4C4F53
+    color: #FFF
+    > .jarviswidget-ctrls a
+      color: #fff !important
+  .nav-tabs li
+    &:not(.active) a
+      color: #fff !important
+    a:hover
+      color: #333 !important
+  > header
+    border-color: #4C4F53 !important
+
+div
+  &.dt-top-row
+    height: 0
+    line-height: 0
+    position: relative
+  &.dt-bottom-row
+    background: #fafafa
+    font-size: 11px
+    overflow: hidden
+    padding: 5px 10px
+    border-top: 1px solid #ccc
+    -webkit-box-shadow: inset 0 1px #fff
+    -moz-box-shadow: inset 0 1px #fff
+    -ms-box-shadow: inset 0 1px #fff
+    box-shadow: inset 0 1px #ffffff
+
+table
+  > thead
+    background-color: #fff
+/* SMART FORMS
+
+.smart-form
+  *
+    margin: 0
+    padding: 0
+    box-sizing: content-box
+    -moz-box-sizing: content-box
+    &:after, &:before
+      margin: 0
+      padding: 0
+      box-sizing: content-box
+      -moz-box-sizing: content-box
+  .btn
+    box-sizing: border-box
+    -moz-box-sizing: border-box
+  .radio + .radio, .checkbox + .checkbox
+    margin-top: 0
+  footer .btn
+    float: right
+    height: 31px
+    margin: 10px 0 0 5px
+    padding: 0 22px
+    font: 300 15px/29px 'Open Sans', Helvetica, Arial, sans-serif
+    cursor: pointer
+  legend
+    padding-top: 15px
+  /* margin: 0;
+  /* outline: none;
+  /* color: #666;
+  /* position: relative;
+  header
+    display: block
+    padding: 8px 0
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2)
+    background: white
+    font-size: 16px
+    font-weight: 300
+    color: #232323
+    margin: 10px 14px 0
+  fieldset
+    display: block
+    padding: 25px 14px 5px
+    border: none
+    background: rgba(255, 255, 255, 0.9)
+    position: relative
+    + fieldset
+      border-top: 1px solid rgba(0, 0, 0, 0.1)
+  section
+    margin-bottom: 15px
+    position: relative
+  footer
+    display: block
+    padding: 7px 14px 15px
+    border-top: 1px solid rgba(0, 0, 0, 0.1)
+    background: rgba(248, 248, 248, 0.9)
+    &:after
+      content: ''
+      display: table
+      clear: both
+  .label
+    display: block
+    margin-bottom: 6px
+    line-height: 19px
+    font-weight: 400
+    font-size: 13px
+    color: #333
+    text-align: left
+    &.col
+      margin: 0
+      padding-top: 7px
+  .note
+    margin-top: 6px
+    padding: 0 1px
+    font-size: 11px
+    line-height: 15px
+    color: #999
 
 .note
   margin-top: 6px
   padding: 0 1px
   font-size: 11px
   line-height: 15px
-  color: #999999
+  color: #999
   margin-top: 2px
   font-size: 10px
 
-i
+.smart-form
+  .note a
+    font-size: 13px
+  .input, .select, .textarea, .radio, .checkbox, .toggle, .button
+    position: relative
+    display: block
+    font-weight: 400
+  .input input, .select select, .textarea textarea
+    display: block
+    box-sizing: border-box
+    -moz-box-sizing: border-box
+    width: 100%
+    height: 32px
+    padding: 8px 10px
+    outline: none
+    border-width: 1px
+    border-style: solid
+    border-radius: 0
+    background: #fff
+    font: 13px/16px 'Open Sans', Helvetica, Arial, sans-serif
+    color: #404040
+    appearance: normal
+    -moz-appearance: none
+    -webkit-appearance: none
+
+.btn-secondary
+  color: #fff
+  background-color: #A6ABA6
+  border-color: #5D615D
+  float: right
+  height: 31px
+  margin: 10px 0 0 5px
+  padding: 0 22px
+  font: 300 15px/29px "Open Sans", Helvetica, Arial, sans-serif
   cursor: pointer
+  &:after
+    color: #fff
 
-.padding-15
-  padding: 15px
+.padding-5-per
+  padding-left: 5%
 
-//tabs
-.ui-widget
-  font-size: 0.5em
-  border: 0
+.padding-10-top-bottom
+  padding: 10px 0px
 
-.width-100
-  width: 100%
+.padding-20-top-bottom
+  padding: 20px 0px!important
 
-.requested-friends-image
-  align-items: center
-  display: inline-flex
-  padding: 10px
-  border-style: solid
-  border-width: 1px
-  border-color: #dcd9d9
-  cursor: pointer
+.float-right
+  float: right!important
 
-.requested-friends-image:hover
-  background-color: #e4e1e1
+.padding-0
+  padding: 0!important
+
+.padding-right-0
+  padding-right: 0 !important
+
+.padding-left-0
+  padding-left: 0 !important
+
+.padding-20
+  padding: 20px!important
+
+/*
+.note-error
+  font-size: 12px !important
+  color: #A90329 !important
+
+/*
+.dataTables_info
+  font-size: 12px
+
+table
+  thead
+    tr > th
+      font-size: 15px
+
+  tbody
+    tr > td
+      font-size: 12px

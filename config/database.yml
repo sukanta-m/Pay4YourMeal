@@ -3,20 +3,20 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: postgres
-  password: mindfire
-  host: localhost      
+  username: root
+  password: password
+  host: localhost
 
 development:
   <<: *default
-  database: blogs_app_development
+  database: meals_management_app_development
 
 test:
   <<: *default
-  database: blogs_app_test
+  database: meals_management_app_test
 
 production:
   <<: *default
-  database: blogs_app_production
-  username: blogs_app
+  database: meals_management_app_production
+  username: meals_management_app
   password: <%= ENV['BLOGS_APP_DATABASE_PASSWORD'] %>

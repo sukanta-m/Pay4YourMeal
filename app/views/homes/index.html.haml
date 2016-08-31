@@ -1,0 +1,22 @@
+.row.padding-20-top-bottom
+  .col.col-md-8.padding-0
+    .right-inner-addon
+      %i.fa.fa-search{style: "right:inherit;"}
+      %input{type:"search",class:"form-control txt-invoice-search", style: "padding: 6px 29px", placeholder:"Search by title or description"}
+      %span.clear-search-text.fa.fa-remove{style: " top:0;"}
+
+  .col.col-md-4.padding-0
+    .float-right
+      = link_to new_marketing_path, class:"btn btn-success" do
+        %i.fa.fa-plus-circle
+          New Marketing
+
+#invoiceGrid.jarviswidget.jarviswidget-color-blueDark{'data-widget-editbutton' => 'false'}
+  %header
+    %span.widget-icon
+      %i.fa.fa-list>
+    %h2#header-title Marketings/ Marketing List
+  %div
+    .jarviswidget-editbox
+    .widget-body.no-padding#lists_section
+      = render 'homes/shared/lists', marketings: @marketings

@@ -1,0 +1,19 @@
+= form_for :members do
+  %table#datatable_fixed_column.meal-lists.table.table-striped.table-bordered.smart-form.datatable_fixed_column
+    %thead
+      %tr
+        %th
+        - (1..Date.today.end_of_month.day).each do |day|
+          %th
+            = day
+    %tbody
+      - @members.each do |member|
+        %tr
+          %td{style: "font-size: 10px;padding: 0;"}
+            = member.user.full_name
+          - (1..Date.today.end_of_month.day).each do |day|
+            %td
+              %ul
+                - %w[breakfast lunch dinner].each do |meal_type|
+                  %li
+                    %input#my_tag_id.meal_checkbox.update_msg{"data-progress-bar" => "progress_bar_div_id", "data-remote" => "true", "data-method" => "post", "data-update" => "message_div_id", "data-url" => group_member_meals_path(current_group, member, day: day, type: meal_type), :name => "value", :type => "checkbox", :checked => member.is_eaten(day, meal_type)}

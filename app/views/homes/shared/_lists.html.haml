@@ -1,0 +1,47 @@
+%table#datatable_fixed_column.table.table-striped.table-bordered.smart-form.datatable_fixed_column
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Description
+      %th Amount
+      %th By whom?
+      %th Where?
+      %th When?
+      %th
+  %tbody
+    - if marketings.present?
+      - marketings.each do |marketing|
+        %tr
+          %th{style: "text-align:center;"}
+            - if current_group.user == current_user
+              %i.approve-marketing.fa.fa-check-circle-o{ id: "marketing_#{marketing.id}", class: "#{marketing.is_approved ? 'approved' : 'unapproved'}"}
+            - else
+              %i.fa.fa-check-circle-o{ id: "marketing_#{marketing.id}", class: "#{marketing.is_approved ? 'approved' : 'unapproved'}"}
+          %td
+            = marketing.try(:title)
+          %td
+            = marketing.try(:description)
+          %td
+            = number_to_currency marketing.amount, precision: 2, unit: "Rs."
+          %td
+            = marketing.user.full_name
+          %td
+            = marketing.try(:location)
+          %td
+            = marketing.try(:marketing_on).strftime("%d %b %Y")
+          %td
+            - if marketing.user == current_user
+              = link_to "Edit", edit_marketing_path(marketing), class: "btn btn-warning"
+              = link_to "Delete", marketing_path(marketing), data: { method: :delete, confirm: "Are you sure" }, class: "btn btn-danger"
+      %tr
+        %td{colspan: '8', style: "text-align: right;" }
+          %ul{style: 'font-size:16px;'}
+            %li Approved:     Rs. #{@total_approved_amount}
+            %li{style: 'color: red;'} Un-approved:  Rs. #{@total_amount - @total_approved_amount}
+            %li{style: 'color: green;'} Total:        Rs. #{@total_amount}
+    - else
+      %tr
+        %td{colspan: '8'}
+          .alert.alert-info.fade.in{style: "padding:15px;"}
+            There is no marketing done

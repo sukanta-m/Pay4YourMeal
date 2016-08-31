@@ -18,4 +18,12 @@ module ApplicationHelper
   def get_user_image_path(user)
     user.avatar.present? ? user.avatar.url(:thumb) : "user_default.png"
   end
+
+  def users_for_select
+    User.all.collect { |u| [u.full_name, u.id] }
+  end
+
+  def all_groups
+    current_user.groups
+  end
 end
