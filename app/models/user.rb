@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def short_name
+    "#{first_name.chars.first + last_name.chars.first}".upcase
+  end
+
   def get_current_group group_id = nil
     group_id.blank? ? groups.order("created_at desc").first : groups.find_by_id(group_id)
   end

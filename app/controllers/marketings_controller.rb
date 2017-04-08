@@ -1,7 +1,7 @@
 class MarketingsController < ApplicationController
   respond_to :html, :json, :js, :text
   before_action :authenticate_user!
-  before_action :set_marketing, only: [:show, :destroy, :edit, :update]
+  before_action :set_marketing, only: [:show, :destroy, :edit, :update, :approve, :copy]
 
   def new
     @marketing = Marketing.new
@@ -35,6 +35,12 @@ class MarketingsController < ApplicationController
 
   end
 
+  def copy
+    @marketing = @marketing.dup
+    @marketing.title = @marketing.title + " (copy)"
+    render :new
+  end
+
   def update
       if @marketing && @marketing.update_attributes(marketing_params)
         flash[:success] = "#{@marketing.title} has been updated successfully"
@@ -55,10 +61,12 @@ class MarketingsController < ApplicationController
   end
 
   def approve
-    if params[:marketing_id] && marketing = Marketing.find_by_id(params[:marketing_id])
-      marketing.update_attributes(is_approved: !marketing.is_approved)
+    if @marketing
+      @marketing.update_attributes(is_approved: !@marketing.is_approved)
     end
-    render json: marketing
+    @marketings = current_group.marketings
+    @total_approved_amount = @marketings.approved_amount
+    @total_amount = @marketings.total_amount
   end
 
   private

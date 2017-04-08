@@ -3,7 +3,7 @@ class MealsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @members = current_group.members
+    @members = current_group.members.active
   end
 
   def create

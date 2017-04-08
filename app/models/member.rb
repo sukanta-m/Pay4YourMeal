@@ -4,6 +4,8 @@ class Member < ActiveRecord::Base
 
   has_many :meals
 
+  scope :active, -> { where(is_accepted: true) }
+
   def is_eaten day, meal_type
     meal = meals.where(created_at: meal_date(day), meal_type: meal_type).first
     meal ? meal.is_taken : false

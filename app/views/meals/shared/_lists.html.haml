@@ -9,8 +9,8 @@
     %tbody
       - @members.each do |member|
         %tr
-          %td{style: "font-size: 10px;padding: 0;"}
-            = member.user.full_name
+          %td{style: "font-size: 20px;padding: 0;", title: "#{member.user.full_name}"}
+            = member.user.short_name
           - (1..Date.today.end_of_month.day).each do |day|
             %td
               %ul

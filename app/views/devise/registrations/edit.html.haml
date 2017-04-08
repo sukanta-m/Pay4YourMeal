@@ -66,17 +66,6 @@
             - if resource.errors.present? && resource.errors[:current_password].present?
               .note.note-error
                 = resource.errors[:current_password].join(' and ')
-        .col.col-md-12
-          .col.col-md-12
-            %label.label
-              Profile image
-            %label.input
-              = f.file_field :avatar,class: "form-control", :tabindex => "6"
-            - if resource.errors.present? && resource.errors[:avatar_content_type].present?
-              .note-error
-                = resource.errors[:avatar_content_type].join(' and ')
-          .col.col-md-2
-            = image_tag get_user_image_path(resource), style: "width:100%;height:100%;"
   %footer
     .row
       .col.col-md-12.text-left
